@@ -1,0 +1,17 @@
+#########################
+ON UPDATE 2022 - CONFIGURATION
+#########################
+
+$ConnectionType => update.dll/update/login
+
+$Update => FixedTypes:
+public Updatetimeadmin(UCPid)
+{
+	new timestamp = gettime();
+	new fmt_str[555];
+
+	format(fmt_str, sizeof fmt_str, "interface('UnansweredRequests').updateTime(%d)", timestamp);
+	SendPacket_1(playerid, s_CefInterface, t_CefUpdate, fmt_str);
+}
+
+ArizonaEmulation => !yes(0);
