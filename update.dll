@@ -1,0 +1,63 @@
+#########################
+ON UPDATE 2022 - CONFIGURATION
+#########################
+
+$Update => update.dll/ArizonaUCP/login.php // Проверяем содержимое файлов админ-панели
+$Login => update.dll/ArizonaUCP/register.php // Проверяем доступ
+
+$ViceCityLogs => vc.dll/ArizonaTp/aeroport.php // Подключаем новые системы (2022)
+$ViceCityFix => vc.dll/ArzUcp/vc.php // Фиксим баг с логами ВайсСити (ранее не показывало нормально логи)
+
+$ViceCity && $Update => $update.exe => download.msc => update.dll/updateARZ.bin
+AddPlayerClass(15455,3952.5962,3914.3518,8.0003,248.2575,0,0,0,0,0,0); // 
+AddPlayerClass(15455,3956.5222,3912.6985,8.0003,281.6194,0,0,0,0,0,0); // 
+AddPlayerClass(15470,3285.0525,-172.9795,18.9041,22.2654,0,0,0,0,0,0); // 
+
+{
+	"title"											: "Panic",
+	"executable"									: "ARZVICECITY",
+	"logo_position"									: "bottom-left",
+	"parameters"									: "admincheck: 1, adminban%0",
+	"use_cmdline_parameters"						: "1",
+	"working_directory"								: "",
+	"wait_for_aeroport"					: "1",
+	"hide_splash_screen"							: "1",
+	"hide_ui_controls"								: "1"
+}
+
+[EasyAntiCheat-Core]
+ServerIdleAutoShutdown_ms=15000
+CommandPortal_EnableLegacy=true
+SharedServerId=DMLEGACY
+LogId=DMLEGACY
+core.agents.0.id=AGENT_PATCH_DL_PROGRESS
+core.agents.0.path="PatchProgress.exe" /locale={locale} /patchLocale={patchLocale} /guid={clientGUID}
+core.agents.0.supportedtasks=TASK_PATCH_DL_PROGRESS
+core.agents.0.handlertype=QT
+core.agents.1.id=AGENT_LOGIN
+core.agents.1.path="Login.exe" /locale={locale} /patchLocale={patchLocale} /gameName="{data5}" /guid={clientGUID}
+core.agents.1.supportedtasks=TASK_LOGIN_USER
+core.agents.1.handlertype=QT
+core.agents.2.id=AGENT_MESSAGE
+core.agents.2.path="MessageDlg.exe" /locale={locale}
+core.agents.2.supportedtasks=TASK_DISPLAY_MESSAGE
+core.agents.2.handlertype=QT
+
+[connection]
+EnvironmentName=update.dll
+
+[Feature]
+CdnOverride=Arz
+
+Vver = 1.0
+
+//---------TEST ADMIN UCP----------
+create vc_zones[1][ADMINUCP] =
+{
+	{1993.8076,919.0233,1820.0974,787.9202},
+	{1862.7214,1047.7358,1923.8372,1200.4474},
+	{2376.9338,1946.8259,2397.5857,2006.2081},
+	{465.8807,1770.1239,539.0154,1674.8005},
+	{-2689.7078,-1440.1669,-2811.4548,-1223.3583}
+};
+//------------------------------------------------
